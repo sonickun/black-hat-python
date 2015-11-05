@@ -4,7 +4,7 @@ import threading
 bind_ip = "0.0.0.0"
 bind_port = 9999
 
-server = socket.socket(socket.AP_INET, socket.SOCK_STREAM)
+server = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
 
 server.bind((bind_ip, bind_port))
 
@@ -26,7 +26,7 @@ def handle_client(client_socket):
 while True:
 	client, addr = server.accept()
 
-	print "[*] Accepted connection from: %s:%d" % (add[0],addr[1])
+	print "[*] Accepted connection from: %s:%d" % (addr[0],addr[1])
 
 	# Run thread processing recieved data
 	client_handler = threading.Thread(target=handle_client, args=(client,))
