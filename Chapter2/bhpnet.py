@@ -157,13 +157,12 @@ def server_loop():
 def run_command(command):
 	# Delete enter at end of string
 	command = command.rstrip()
-	print command
 	# Run the command and get the output
 	try:
 		output = subprocess.check_output(command,stderr=subprocess.STDOUT, shell=True)
 	except:
 		output = "Failed to execute command.\n"
-	print output
+
 	# Send output to client
 	return output
 
@@ -219,8 +218,7 @@ def client_handler(client_socket):
 			cmd_buffer = ""
 			while "\n" not in cmd_buffer:
 				cmd_buffer += client_socket.recv(1024)
-				print cmd_buffer
-				print "in"
+
 				# Get the result of command
 				response = run_command(cmd_buffer)
 				response += prompt
